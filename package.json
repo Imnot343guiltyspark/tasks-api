@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/Imnot343guiltyspark/tasks-api/issues"
   },
-  "homepage": "https://github.com/Imnot343guiltyspark/tasks-api#readme"
+  "homepage": "https://github.com/Imnot343guiltyspark/tasks-api#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
 }
