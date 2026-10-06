@@ -1,7 +1,6 @@
 import app from "./app.js";
+import { env } from "./config/env.js";
 
-const port = 3000;
-
-app.listen(port, () => {
-  console.log(`Servidor listo en http://localhost:${port}`);
+app.listen(env.port, () => {
+  console.log(`Servidor listo en http://localhost:${env.port}`);
 });
