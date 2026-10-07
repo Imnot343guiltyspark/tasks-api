@@ -10,3 +10,12 @@ describe("GET /health", () => {
     expect(res.body).toEqual({ status: "ok" });
   });
 });
+
+describe("GET /not_found", () => {
+  it("responde 404 y NOT_FOUND", async () => {
+    const res = await request(app).get("/not_found");
+
+    expect(res.status).toBe(404);
+    expect(res.body.error.code).toBe("NOT_FOUND");
+  });
+});
