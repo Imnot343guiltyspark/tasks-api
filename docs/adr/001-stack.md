@@ -17,9 +17,9 @@ Calidad de código con ESLint y Prettier.
 
 ## Alternativas consideradas
 
-Python con FastAPI. No la elegí porque tendría que aprender otro lenguaje a la vez que backend y Typescript sirve también para frontend.
+Python con FastAPI. No la elegí porque tendría que aprender otro lenguaje a la vez que backend y TypeScript sirve también para frontend.
 
 ## Consecuencias
 
-Ventaja: un solo lenguaje para todo el stack.
+Ventaja: TypeScript avisa errores antes de ejecutar, como cuando tsx no se quejó y tsc sí.
 Costo: TypeScript exige más configuración (tsconfig, ESLint).
