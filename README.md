@@ -45,3 +45,14 @@ Luego abre el abre el navegador:
 - http://localhost:3000/health
 
 Deberías ver: `{"status":"ok"}`
+
+## Pruebas y calidad de código
+
+Comandos que te permitirán verificar que el código funciona y está ordenado.
+
+| Comando            | Qué hace                                         |
+| ------------------ | ------------------------------------------------ |
+| `npm run lint`     | Lee el código y busca errores o malas prácticas. |
+| `npx tsc --noEmit` | Lee el código y revisa los tipos.                |
+| `npm test`         | Ejecuta tu app y prueba si responde.             |
+| `npm run format`   | Ordena el código para leerse mejor.              |
