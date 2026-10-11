@@ -68,7 +68,7 @@ Si se pide una ruta que no existe, la API responde con el código 404 y este cue
 ```json
 {
   "error": {
-    "code": "NOT_FOUND",
+    "code": "404",
     "message": "Route GET /no-existe not found"
   }
 }
