@@ -56,3 +56,37 @@ Comandos que te permitirán verificar que el código funciona y está ordenado.
 | `npx tsc --noEmit` | Lee el código y revisa los tipos.                |
 | `npm test`         | Ejecuta tu app y prueba si responde.             |
 | `npm run format`   | Ordena el código para leerse mejor.              |
+
+## Endpoints
+
+| Método | Ruta      | Respuesta                   |
+| ------ | --------- | --------------------------- |
+| `GET`  | `/health` | `200` con `{"status":"ok"}` |
+
+Si se pide una ruta que no existe, la API responde con el código 404 y este cuerpo:
+
+```json
+{
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "Route GET /no-existe not found"
+  }
+}
+```
+
+## Estructura del proyecto
+
+```text
+src/
+|   app.ts                   ← Junta todo: ensambla la app
+|   server.ts                ← Es el que enciende el servidor
+|
++---config
+|       env.ts               ← Lee las variables de .env
+|
++---controllers
+|       health.controller.ts ← Construye la respuesta
+|
+\---routes
+        health.routes.ts     ← Conecta la URL a la función
+```
