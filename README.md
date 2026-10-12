@@ -90,3 +90,13 @@ src/
 \---routes
         health.routes.ts     ← Conecta la URL a la función
 ```
+
+## Decisiones técnicas
+
+-**TypeScript:** Se eligió porque detecta errores antes de ejecutar.
+
+-**Express 5:** Define las rutas y recibe peticiones HTTP.
+
+-**Vitest:** Prueba que la API corra bien. Es necesario hacer tests para saber que todo funciona.
+
+Para conocer más revisa el [ADR 001: stack](docs/adr/001-stack.md).
