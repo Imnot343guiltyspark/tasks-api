@@ -14,9 +14,9 @@ API en Node.js, TypeScript y Express la cual responde en /health para saber que 
    ```PowerShell
    git clone https://github.com/Imnot343guiltyspark/tasks-api.git
    ```
-2. Entrar a la carpeta:
+2. Entra a la carpeta:
 
-   ```powershell
+   ```PowerShell
    cd tasks-api
    ```
 
@@ -40,11 +40,23 @@ Arranca el servidor en modo desarrollo:
 npm run dev
 ```
 
-Luego abre el abre el navegador:
+Luego abre el navegador:
 
 - http://localhost:3000/health
 
 Deberías ver: `{"status":"ok"}`
+
+Compila y deja listo para producción:
+
+```PowerShell
+npm run build
+```
+
+Después de compilar, inicia el servidor desde los archivos JavaScript:
+
+```PowerShell
+npm start
+```
 
 ## Pruebas y calidad de código
 
@@ -68,7 +80,7 @@ Si se pide una ruta que no existe, la API responde con el código 404 y este cue
 ```json
 {
   "error": {
-    "code": "404",
+    "code": "NOT_FOUND",
     "message": "Route GET /no-existe not found"
   }
 }
@@ -93,10 +105,10 @@ src/
 
 ## Decisiones técnicas
 
--**TypeScript:** Se eligió porque detecta errores antes de ejecutar.
+- **TypeScript:** Se eligió porque detecta errores antes de ejecutar.
 
--**Express 5:** Define las rutas y recibe peticiones HTTP.
+- **Express 5:** Define las rutas y recibe peticiones HTTP.
 
--**Vitest:** Prueba que la API corra bien. Es necesario hacer tests para saber que todo funciona.
+- **Vitest:** Prueba que la API corra bien. Es necesario hacer tests para saber que todo funciona.
 
 Para conocer más revisa el [ADR 001: stack](docs/adr/001-stack.md).
