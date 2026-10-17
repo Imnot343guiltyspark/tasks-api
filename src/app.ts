@@ -4,6 +4,7 @@ import { taskRouter } from "./routes/task.routes.js";
 
 const app = express();
 
+app.use(express.json());
 app.use(healthRoutes);
 app.use("/tasks", taskRouter);
 
