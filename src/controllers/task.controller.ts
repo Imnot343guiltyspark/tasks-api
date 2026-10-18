@@ -7,7 +7,7 @@ export function listTasks(_req: Request, res: Response): void {
 }
 
 export function createTask(req: Request, res: Response): void {
-  const { title, description } = req.body;
+  const { title, description } = req.body ?? {};
 
   if (typeof title !== "string" || title.trim() === "") {
     res.status(400).json({
