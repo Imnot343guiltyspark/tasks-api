@@ -18,4 +18,11 @@ describe("POST /tasks", () => {
     expect(response.body.error.code).toBe("VALIDATION_ERROR");
   });
 
+  it("returns 400 when title is missing", async () => {
+    const response = await request(app).post("/tasks")
+
+    expect(response.status).toBe(400);
+    expect(response.body.error.code).toBe("VALIDATION_ERROR");
+  });
+
 });
