@@ -10,4 +10,12 @@ describe("POST /tasks", () => {
     expect(response.body.title).toBe("Pan");
     expect(response.body.completed).toBe(false);
   });
+
+  it("returns 400 when title is missing", async () => {
+    const response = await request(app).post("/tasks").send({ description: "Task without title" });
+
+    expect(response.status).toBe(400);
+    expect(response.body.error.code).toBe("VALIDATION_ERROR");
+  });
+
 });
