@@ -12,17 +12,18 @@ describe("POST /tasks", () => {
   });
 
   it("returns 400 when title is missing", async () => {
-    const response = await request(app).post("/tasks").send({ description: "Task without title" });
+    const response = await request(app)
+      .post("/tasks")
+      .send({ description: "Task without title" });
 
     expect(response.status).toBe(400);
     expect(response.body.error.code).toBe("VALIDATION_ERROR");
   });
 
-  it("returns 400 when title is missing", async () => {
-    const response = await request(app).post("/tasks")
+  it("returns 400 when body is missing", async () => {
+    const response = await request(app).post("/tasks");
 
     expect(response.status).toBe(400);
     expect(response.body.error.code).toBe("VALIDATION_ERROR");
   });
-
 });
