@@ -27,3 +27,12 @@ describe("POST /tasks", () => {
     expect(response.body.error.code).toBe("VALIDATION_ERROR");
   });
 });
+
+describe("GET /tasks", () => {
+  it("returns 200 and a list of tasks", async () => {
+    const response = await request(app).get("/tasks");
+
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.body)).toBe(true);
+  });
+});
