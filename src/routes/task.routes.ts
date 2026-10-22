@@ -6,3 +6,5 @@ export const taskRouter = Router();
 taskRouter.get("/", taskController.listTasks);
 
 taskRouter.post("/", taskController.createTask);
+
+taskRouter.get("/:id", taskController.getTaskById);
