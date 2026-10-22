@@ -14,3 +14,7 @@ export function create(data: Omit<Task, "id">): Task {
   tasks.push(task);
   return task;
 }
+
+export function findById(id: number): Task | undefined {
+  return tasks.find((task) => task.id === id);
+}
