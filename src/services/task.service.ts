@@ -13,3 +13,7 @@ export function createTask(title: string, description?: string): Task {
     createdAt: new Date(),
   });
 }
+
+export function getTaskById(id: number): Task | undefined {
+  return taskRepository.findById(id);
+}
