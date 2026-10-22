@@ -1,6 +1,6 @@
 # tasks-api
 
-API en Node.js, TypeScript y Express para crear y listar tareas. Incluye `/health` para saber que está funcionando.
+API en Node.js, TypeScript y Express para crear consultar y listar tareas. Incluye `/health` para saber que está funcionando.
 
 ## Requisitos
 
@@ -71,12 +71,15 @@ Comandos que te permitirán verificar que el código funciona y está ordenado.
 
 ## Endpoints
 
-| Método | Ruta      | Respuesta                                      |
-| ------ | --------- | ---------------------------------------------- |
-| `GET`  | `/health` | `200` con `{"status":"ok"}`                    |
-| `GET`  | `/tasks`  | `200` con la lista de tareas                   |
-| `POST` | `/tasks`  | `201` con la tarea creada                      |
-| `POST` | `/tasks`  | `400` si falta el título (error de validación) |
+| Método | Ruta         | Respuesta                                            |
+| ------ | ------------ | ---------------------------------------------------- |
+| `GET`  | `/health`    | `200` con `{"status":"ok"}`                          |
+| `GET`  | `/tasks`     | `200` con la lista de tareas                         |
+| `POST` | `/tasks`     | `201` con la tarea creada                            |
+| `POST` | `/tasks`     | `400` si falta el título (error de validación)       |
+| `GET`  | `/tasks/:id` | `200` con la tarea encontrada                        |
+| `GET`  | `/tasks/:id` | `404` si la tarea no existe (no se encontró)         |
+| `GET`  | `/tasks/:id` | `400` si el id no es un número (error de validación) |
 
 ### POST /tasks
 
@@ -108,6 +111,35 @@ Respuesta `400` (sin título):
     "code": "VALIDATION_ERROR",
     "message": "Title is required"
   }
+}
+```
+
+### GET /tasks/:id
+
+Respuesta `200`:
+
+```json
+{
+  "id": 1,
+  "title": "Pan",
+  "completed": false,
+  "createdAt": "2026-10-22T21:55:16.507Z"
+}
+```
+
+Respuesta `404`:
+
+```json
+{
+  "error": { "code": "NOT_FOUND", "message": "Task 999 not found" }
+}
+```
+
+Respuesta `400`:
+
+```json
+{
+  "error": { "code": "VALIDATION_ERROR", "message": "Id must be a number" }
 }
 ```
 
