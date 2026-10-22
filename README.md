@@ -1,6 +1,6 @@
 # tasks-api
 
-API en Node.js, TypeScript y Express la cual responde en /health para saber que está funcionando.
+API en Node.js, TypeScript y Express para crear y listar tareas. Incluye `/health` para saber que está funcionando.
 
 ## Requisitos
 
@@ -71,9 +71,47 @@ Comandos que te permitirán verificar que el código funciona y está ordenado.
 
 ## Endpoints
 
-| Método | Ruta      | Respuesta                   |
-| ------ | --------- | --------------------------- |
-| `GET`  | `/health` | `200` con `{"status":"ok"}` |
+| Método | Ruta      | Respuesta                                      |
+| ------ | --------- | ---------------------------------------------- |
+| `GET`  | `/health` | `200` con `{"status":"ok"}`                    |
+| `GET`  | `/tasks`  | `200` con la lista de tareas                   |
+| `POST` | `/tasks`  | `201` con la tarea creada                      |
+| `POST` | `/tasks`  | `400` si falta el título (error de validación) |
+
+### POST /tasks
+
+Cuerpo del pedido:
+
+```json
+{ "title": "Pan", "description": "Comprar pan" }
+```
+
+- `title`: obligatorio
+- `description`: opcional
+
+Respuesta `201`:
+
+```json
+{
+  "id": 1,
+  "title": "Pan",
+  "completed": false,
+  "createdAt": "2026-10-22T04:24:25.547Z"
+}
+```
+
+Respuesta `400` (sin título):
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Title is required"
+  }
+}
+```
+
+### Rutas que no existen
 
 Si se pide una ruta que no existe, la API responde con el código 404 y este cuerpo:
 
@@ -90,17 +128,28 @@ Si se pide una ruta que no existe, la API responde con el código 404 y este cue
 
 ```text
 src/
-|   app.ts                   ← Junta todo: ensambla la app
-|   server.ts                ← Es el que enciende el servidor
+|   app.ts                     ← Junta todo: ensambla la app
+|   server.ts                  ← Es el que enciende el servidor
 |
 +---config
-|       env.ts               ← Lee las variables de .env
+|       env.ts                 ← Lee las variables de .env
 |
 +---controllers
-|       health.controller.ts ← Construye la respuesta
+|       health.controller.ts   ← Construye la respuesta de /health
+|       task.controller.ts     ← Valida lo que llega y responde con el código correcto
 |
-\---routes
-        health.routes.ts     ← Conecta la URL a la función
++---models
+|       task.model.ts          ← Define cómo es una tarea
+|
++---repositories
+|       task.repository.ts     ← Guarda y lee las tareas (en memoria)
+|
++---routes
+|       health.routes.ts       ← Conecta /health a su función
+|       task.routes.ts         ← Conecta /tasks a sus funciones
+|
+\---services
+        task.service.ts        ← Lógica: crea la tarea con sus valores iniciales
 ```
 
 ## Decisiones técnicas
