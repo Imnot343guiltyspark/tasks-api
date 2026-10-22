@@ -51,4 +51,15 @@ describe("GET /tasks/:id", () => {
     expect(response.status).toBe(404);
     expect(response.body.error.code).toBe("NOT_FOUND");
   });
+
+  it("returns 200 and the task when it exists", async () => {
+    const created = await request(app).post("/tasks").send({ title: "Coffee" });
+    const id = created.body.id;
+
+    const response = await request(app).get(`/tasks/${id}`);
+
+    expect(response.status).toBe(200);
+    expect(response.body.id).toBe(id);
+    expect(response.body.title).toBe("Coffee");
+  });
 });
