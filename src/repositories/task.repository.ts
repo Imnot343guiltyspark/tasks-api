@@ -18,3 +18,14 @@ export function create(data: Omit<Task, "id">): Task {
 export function findById(id: number): Task | undefined {
   return tasks.find((task) => task.id === id);
 }
+
+export function deleteById(id: number): boolean {
+  const position = tasks.findIndex((task) => task.id === id);
+
+  if (position === -1) {
+    return false;
+  }
+
+  tasks.splice(position, 1);
+  return true;
+}
