@@ -17,3 +17,7 @@ export function createTask(title: string, description?: string): Task {
 export function getTaskById(id: number): Task | undefined {
   return taskRepository.findById(id);
 }
+
+export function deleteTask(id: number): boolean {
+  return taskRepository.deleteById(id);
+}
