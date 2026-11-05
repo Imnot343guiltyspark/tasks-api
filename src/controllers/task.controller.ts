@@ -43,5 +43,23 @@ export function getTaskById(req: Request, res: Response): void {
 }
 
 export function deleteTask(req: Request, res: Response): void {
-  const deleted = 
+  const id = Number(req.params.id);
+
+  if (!Number.isInteger(id)) {
+    res.status(400).json({
+      error: { code: "VALIDATION_ERROR", message: "Id must be a number" },
+    });
+    return;
+  }
+
+  const deleted = taskService.deleteTask(id);
+
+  if (!deleted) {
+    res.status(404).json({
+      error: { code: "NOT_FOUND", message: `Task ${id} not found` },
+    });
+    return;
+  }
+
+  res.status(204).send();
 }
