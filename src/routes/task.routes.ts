@@ -8,3 +8,5 @@ taskRouter.get("/", taskController.listTasks);
 taskRouter.post("/", taskController.createTask);
 
 taskRouter.get("/:id", taskController.getTaskById);
+
+taskRouter.delete("/:id", taskController.deleteTask);
