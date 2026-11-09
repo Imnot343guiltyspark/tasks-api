@@ -63,3 +63,29 @@ describe("GET /tasks/:id", () => {
     expect(response.body.title).toBe("Coffee");
   });
 });
+
+describe("DELETE /tasks/:id", () => {
+  it("returns 400 when id is not a number", async () => {
+    const response = await request(app).delete("/tasks/abc");
+
+    expect(response.status).toBe(400);
+    expect(response.body.error.code).toBe("VALIDATION_ERROR");
+  });
+
+  it("returns 404 when the task does not exist", async () => {
+    const response = await request(app).delete("/tasks/999");
+
+    expect(response.status).toBe(404);
+    expect(response.body.error.code).toBe("NOT_FOUND");
+  });
+
+  it("returns 204 and empty body when it deletes the task", async () => {
+    const created = await request(app).post("/tasks").send({ title: "Coffee" });
+    const id = created.body.id;
+
+    const response = await request(app).delete(`/tasks/${id}`);
+
+    expect(response.status).toBe(204);
+    expect(response.body).toEqual({});
+  });
+});
