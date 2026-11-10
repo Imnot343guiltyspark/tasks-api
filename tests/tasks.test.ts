@@ -88,4 +88,16 @@ describe("DELETE /tasks/:id", () => {
     expect(response.status).toBe(204);
     expect(response.body).toEqual({});
   });
+
+  it("returns 404 when getting a deleted task", async () => {
+    const created = await request(app).post("/tasks").send({ title: "Coffee" });
+    const id = created.body.id;
+
+    await request(app).delete(`/tasks/${id}`);
+
+    const response = await request(app).delete(`/tasks/${id}`);
+
+    expect(response.status).toBe(404);
+    expect(response.body.error.code).toEqual("NOT_FOUND");
+  });
 });
